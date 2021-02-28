@@ -68,6 +68,6 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - run: |
           docker manifest create wagoautomation/edge-lora-forwarder:${{ steps.global-data.outputs.NOW }} wagoautomation/edge-lora-forwarder:amd64-${{ steps.global-data.outputs.NOW }}
-          docker manifest push wagoautomation/hello-world:${{ steps.global-data.outputs.NOW }}
+          docker manifest push wagoautomation/edge-lora-forwarder:${{ steps.global-data.outputs.NOW }}
           docker manifest create wagoautomation/edge-lora-forwarder:latest wagoautomation/edge-lora-forwarder:amd64-${{ steps.global-data.outputs.NOW }} 
           docker manifest push wagoautomation/edge-lora-forwarder:latest
