@@ -19,4 +19,4 @@ Insert the /dev/ttyACMx path to the docker run command under devices
 ```
 
 
-Take a look Chripstack...
+Take a look Chripstack...to be continued
