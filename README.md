@@ -7,11 +7,16 @@
 
 This container can be used to operate a lora card in the Wago Edge Computer. The container serves as a lora packet forwarder.
 
-Find out the lora gateway with 
+Find out the path to your lora gateway card 
 ```bash
   dmesg | grep tty
 ```
 
+Insert the /dev/ttyACMx path to the docker run command under devices
+
 ```bash
   docker run --devices=/dev/ttyACM0 wagoautomation/edge-lora-forwarder
 ```
+
+
+Take a look Chripstack...
