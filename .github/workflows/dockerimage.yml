@@ -2,12 +2,15 @@ name: Build Edge LoRa Packet Forwarder
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
-    paths:
-      - "build-context/*"
-      - ".github/workflows/dockerimage.yml"
+    inputs:
+      hal-version:
+        description: "picoGW_hal version"
+        required: true
+        default: "V0.2.3"
+      forwarder-version:
+        description: "picoGW_packet_forwarder version"
+        required: true
+        default: "V0.1.0"
 
 jobs:
   get_date:
@@ -47,27 +50,10 @@ jobs:
           context: ./build-context
           file: ./build-context/Dockerfile
           platforms: linux/amd64
+          build-args: |
+            HAL_VERSION=${{ github.event.inputs.hal-version }}
+            PACKET_FORWARDER_VERSION=${{ github.event.inputs.forwarder-version }}
           push: true
           tags: |
-            wagoautomation/edge-lora-forwarder-${{ steps.global-data.outputs.NOW }}
-
-  create_manifest:
-    needs: [build_amd64_image]
-    runs-on: ubuntu-latest
-    env:
-      DOCKER_CLI_EXPERIMENTAL: enabled
-    steps:
-      - uses: nick-invision/persist-action-data@v1
-        id: global-data
-        with:
-          retrieve_variables: NOW
-      - name: Login to DockerHub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - run: |
-          docker manifest create wagoautomation/edge-lora-forwarder:${{ steps.global-data.outputs.NOW }} wagoautomation/edge-lora-forwarder:amd64-${{ steps.global-data.outputs.NOW }}
-          docker manifest push wagoautomation/edge-lora-forwarder:${{ steps.global-data.outputs.NOW }}
-          docker manifest create wagoautomation/edge-lora-forwarder:latest wagoautomation/edge-lora-forwarder:amd64-${{ steps.global-data.outputs.NOW }} 
-          docker manifest push wagoautomation/edge-lora-forwarder:latest
+            wagoautomation/edge-lora-forwarder:${{ steps.global-data.outputs.NOW }}
+            wagoautomation/edge-lora-forwarder:latest
