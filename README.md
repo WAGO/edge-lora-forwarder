@@ -19,13 +19,13 @@ Find out the path to your lora gateway card
 Insert the /dev/ttyACMx path to the docker run command under devices
 
 ```bash
-  docker run -d --restart unless-stopped -p 1680:1680/udp --devices=/dev/ttyACM0 wagoautomation/edge-lora-forwarder
+  docker run -d --restart unless-stopped --devices=/dev/ttyACM0 wagoautomation/edge-lora-forwarder
 ```
 
 Run the container with own conf file
 
 ```bash
-  docker run -d --restart unless-stopped -p 1680:1680/udp -v <Path_to_global_conf.json>:/global_conf.json --devices=/dev/ttyACM0 wagoautomation/edge-lora-forwarder
+  docker run -d --restart unless-stopped -v <Path_to_global_conf.json>:/global_conf.json --devices=/dev/ttyACM0 wagoautomation/edge-lora-forwarder
 ```
 
 ## Chirpstack with WAGO Edge Computer 752-940x

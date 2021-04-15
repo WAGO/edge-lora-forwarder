@@ -2,7 +2,7 @@ version: "3"
 
 services:
   lora-packet-forwarder:
-    image: wagoautomation/edge-lora-forwarder
+    image: wagoautomation/edge-lora-forwarder:latest
     devices:
       - "/dev/ttyACM0:/dev/ttyACM0"
     volumes:
