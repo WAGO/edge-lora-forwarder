@@ -1,11 +1,15 @@
-# LoRa-Packet-Forwarder for Wago Edge Computer 752-940x
+# LoRa-Packet-Forwarder for WAGO Edge Computer 752-940x
 
 ## Prerequisites
 - Wago Edge Computer 752-940x
-- Mikro Tik LoRa Gateway Mini-PCIe-Card (R11e-LoRa8) -> reichelt.de MTK R11E-LORA8
+- Mikro Tik LoRa Gateway Mini-PCIe-Card (R11e-LoRa8) -> [Order@reichelt.de](https://www.reichelt.de/mini-pcie-gateway-karte-lora-wan-mtk-r11e-lora8-p273003.html?CCOUNTRY=445&LANGUAGE=de&trstct=pos_0&nbc=1&&r=1 "reichelt elektronik")
 - LoRa Skills
 
 This container can be used to operate a lora card in the Wago Edge Computer. The container serves as a lora packet forwarder.
+
+###For use with Chirpstack see below.
+
+##For use as lora packet forwarder for own projects:
 
 Find out the path to your lora gateway card 
 ```bash
@@ -15,8 +19,34 @@ Find out the path to your lora gateway card
 Insert the /dev/ttyACMx path to the docker run command under devices
 
 ```bash
-  docker run --devices=/dev/ttyACM0 wagoautomation/edge-lora-forwarder
+  docker run -d --restart unless-stopped -p 1680:1680/udp --devices=/dev/ttyACM0 wagoautomation/edge-lora-forwarder
 ```
 
+Run the container with own conf file
 
-Take a look Chripstack...to be continued
+```bash
+  docker run -d --restart unless-stopped -p 1680:1680/udp -v <Path_to_global_conf.json>:/global_conf.json --devices=/dev/ttyACM0 wagoautomation/edge-lora-forwarder
+```
+
+## Chirpstack with WAGO Edge Computer 752-940x
+
+Forked from [brocaar/chirpstack-docker](https://github.com/brocaar/chirpstack-docker "brocaar/chirpstack-docker")
+
+Clone the repository and take a look at the configuration files.
+
+```bash
+git clone https://github.com/WAGO/edge-lora-forwarder.git
+cd chirpstack-docker
+```
+
+After you have updated the configuration, you can run the following command to start all Docker containers:
+
+```bash
+docker-compose up
+```
+
+### Add Network Server
+
+When adding the Network Server in the ChirpStack Application Server web-interface
+(see [Network Servers](https://www.chirpstack.io/application-server/use/network-servers/)),
+you must enter `chirpstack-network-server:8000` as the Network Server `hostname:IP`.

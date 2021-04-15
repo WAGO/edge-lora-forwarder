@@ -24,6 +24,7 @@ RUN sed -i -r "s/0x010a0006/0x010a0004/g" /LoRa/picoGW_hal/libloragw/inc/loragw_
 RUN mkdir /deploy
 WORKDIR /LoRa/picoGW_packet_forwarder
 RUN cp lora_pkt_fwd/lora_pkt_fwd /deploy
+RUN cp lora_pkt_fwd/global_conf.json /deploy
 RUN cp util_ack/util_ack /deploy
 RUN cp util_sink/util_sink /deploy
 RUN cp util_tx_test/util_tx_test /deploy
