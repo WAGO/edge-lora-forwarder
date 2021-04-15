@@ -7,9 +7,9 @@
 
 This container can be used to operate a lora card in the Wago Edge Computer. The container serves as a lora packet forwarder.
 
-###For use with Chirpstack see below.
+### For use with Chirpstack see below.
 
-##For use as lora packet forwarder for own projects:
+## For use as lora packet forwarder for own projects:
 
 Find out the path to your lora gateway card 
 ```bash
