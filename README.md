@@ -2,7 +2,7 @@
 
 ## Prerequisites
 - Wago Edge Computer 752-940x
-- Mikro Tik LoRa Gateway Mini-PCIe-Card (R11e-LoRa8) -> [Order@reichelt.de](https://www.reichelt.de/mini-pcie-gateway-karte-lora-wan-mtk-r11e-lora8-p273003.html?CCOUNTRY=445&LANGUAGE=de&trstct=pos_0&nbc=1&&r=1 "reichelt elektronik")
+- Mikro Tik LoRa Gateway Mini-PCIe-Card (R11e-LoRa8) -> [order@reichelt.de](https://www.reichelt.de/mini-pcie-gateway-karte-lora-wan-mtk-r11e-lora8-p273003.html?CCOUNTRY=445&LANGUAGE=de&trstct=pos_0&nbc=1&&r=1 "reichelt elektronik")
 - LoRa Skills
 
 This container can be used to operate a lora card in the Wago Edge Computer. The container serves as a lora packet forwarder.
